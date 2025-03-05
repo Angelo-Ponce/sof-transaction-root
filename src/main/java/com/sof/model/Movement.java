@@ -27,9 +27,8 @@ public class Movement {
     @Column(name = "account_id", nullable = false)
     private Long accountId;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "movement_date", nullable = false)
-    private Date movementDate;
+    private LocalDateTime movementDate;
 
     @Column(name = "movement_type", nullable = false, length = 150)
     private String movementType;
