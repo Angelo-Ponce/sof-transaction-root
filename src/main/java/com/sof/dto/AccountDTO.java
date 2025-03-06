@@ -18,7 +18,7 @@ public class AccountDTO {
     private Long accountId;
 
     @NotNull(message = "{account.number.empty}")
-    private Integer accountNumber;
+    private String accountNumber;
 
     @NotEmpty(message = "{account.type.empty}")
     @Size(min = 5, max = 100, message = "{account.type.size}")

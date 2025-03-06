@@ -23,7 +23,7 @@ public class Account {
     private Long accountId;
 
     @Column(name = "account_number", nullable = false, unique = true)
-    private Integer accountNumber;
+    private String accountNumber;
 
     @Column(name = "account_type", nullable = false, length = 100)
     private String accountType;
