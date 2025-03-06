@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 import static com.sof.constants.Constants.USER;
@@ -37,10 +39,10 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountDTO> save(@Valid @RequestBody AccountDTO request) {
+    public ResponseEntity<Void> save(@Valid @RequestBody AccountDTO request) {
         Account account = service.saveAccount(AccountMapper.INSTANCE.toAccount(request), USER);
-
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(AccountMapper.INSTANCE.toAccountDTO(account));
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(account.getAccountId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
