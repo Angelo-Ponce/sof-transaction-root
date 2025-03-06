@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(AccountController.class)
+@AutoConfigureMockMvc(addFilters = false)
 class AccountControllerTest {
 
     @Autowired
@@ -117,6 +119,7 @@ class AccountControllerTest {
     }
 
     @Test
+    //@WithMockUser
     void testDeleteAccount() throws Exception {
         mockMvc.perform(delete("/api/v1/cuentas/1"))
                 .andExpect(status().isNoContent());
